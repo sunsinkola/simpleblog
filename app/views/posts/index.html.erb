@@ -1,0 +1,22 @@
+<h1>The Newsletter</h1>
+
+<%= link_to 'New Post', new_post_path %>
+
+<% @posts.each do |post| %>
+<div class="container">
+  <table>
+    <tr><h2><%= post.title %></h2></tr>
+    <tr><h5><%= post.date.strftime("( %B %d, %Y )") %></h5></tr>
+    </br>
+    <tr><p><%= simple_format(post.content) %></p></tr>
+    <% post.subjects.each do |subject| %>
+      <tr><span class="label label-info"><%= link_to subject.name, subject %></span></tr>
+    <% end %>
+    <tr>  
+      <td><%= link_to 'Show', post %></td>
+      <td><%= link_to 'Edit', edit_post_path(post) %></td>
+      <td><%= link_to 'Destroy', post, confirm: 'Are you sure?', method: :delete %></td>
+    </tr>
+  </table>
+</div>
+<% end %>
